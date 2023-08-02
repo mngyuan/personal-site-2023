@@ -7,6 +7,15 @@ module.exports = {
   ],
   theme: {
     extend: {
+      width: {
+        '5/7': 'calc(100% / 7 * 5)',
+        '2/7': 'calc(100% / 7 * 2)',
+      },
+      spacing: {
+        '5/7': 'calc(100% / 7 * 5)',
+        '2/7': 'calc(100% / 7 * 2)',
+        blurb: 'calc(50% + 4.5rem)',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
@@ -15,4 +24,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};
