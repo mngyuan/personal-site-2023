@@ -17,17 +17,30 @@ const inter = Inter({subsets: ['latin']});
 //};
 //
 const paths = {
+  '/': {
+    href: '/',
+    description:
+      'I’m a Creative Technologist, working with web. Previously at the Royal College of Art, Facebook, and IBM.',
+    hidden: true,
+  },
   '/mx-clp': {
     href: '/mx-clp',
     name: 'MX-CLP',
     description:
-      'This is some lorem ipsum. This is a project description. Tong is very cute. Everybody knows this. She is also outspoken when she cares about something. Which adds to her cuteness when you consider how shy she is otherwise. Very cute. ',
+      'A portable, tactile video editing device using embodied cognition and physical metaphor to spark new creativity.',
   },
   '/this-statement-is-false': {
     href: '/this-statement-is-false',
     name: 'THIS STATEMENT IS FALSE',
+    description:
+      'An interactive AI art installation asking users to interrogate their relationship with non-human intelligence, present and future.',
   },
-  '/summer-love': {href: '/summer-love', name: 'Summer Love'},
+  '/summer-love': {
+    href: '/summer-love',
+    name: 'Summer Love',
+    description:
+      'An interactive audio installation meant to encourage stillness, reflection, and curiosity in music.',
+  },
   '/here+now': {href: '/here+now', name: 'HERE + NOW'},
   '/dreaming': {href: '/dreaming', name: 'DREAMING'},
 };
@@ -35,18 +48,19 @@ const paths = {
 const animatecontainer = {
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
   },
   hidden: {
     opacity: 0,
   },
 };
 
-const item = {
-  visible: {opacity: 1, transition: {duration: 0.8}},
-  hidden: {opacity: 0},
+export const fadeInItem = {
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    transition: {delay: 0.24 * i, duration: 0.8},
+  }),
+  hidden: {opacity: 0, y: 4},
 };
 
 const heroImage = {
@@ -63,12 +77,13 @@ const Nav = ({links}) => {
     <div className="h-full w-2/7 top-0 left-5/7 absolute flex flex-col justify-between bg-gradient-to-b from-black from-25% to-60%">
       <motion.div
         className="flex flex-row justify-between p-6 pt-12 pr-12 pb-0"
-        variants={item}
+        variants={fadeInItem}
+        custom={4}
       >
         <Link href="/">Home</Link>
       </motion.div>
       <nav className="basis-1/2 shrink-0 grow-0 flex flex-col justify-between p-6 pr-12 pb-0">
-        <motion.ul variants={item}>
+        <motion.ul variants={fadeInItem} custom={5}>
           {links.map((link) => (
             <li key={link.name}>
               <Link
@@ -82,7 +97,7 @@ const Nav = ({links}) => {
             </li>
           ))}
         </motion.ul>
-        <motion.div variants={item}>
+        <motion.div variants={fadeInItem} custom={6}>
           <i>About</i>
         </motion.div>
       </nav>
@@ -106,10 +121,11 @@ export default function RootLayout({children}) {
           >
             <main className="h-full overflow-auto flex flex-col justify-between">
               <div className="flex flex-row justify-between sticky top-0 p-6 pt-12 pl-12 pb-0 pr-2/7">
-                <motion.div variants={item}>{`Kevin Lee${
-                  pathname !== '/' ? ` / ${paths[pathname].name}` : ''
-                }`}</motion.div>
-                <motion.div variants={item}>
+                <motion.div variants={fadeInItem} custom={0}>
+                  <Link href="/">Kevin Lee</Link>
+                  {pathname !== '/' ? ` / ${paths[pathname].name}` : ''}
+                </motion.div>
+                <motion.div variants={fadeInItem} custom={1}>
                   <a href="/Kevin Lee CV - Summer 2023.pdf" target="_blank">
                     Resume / CV
                   </a>
@@ -117,7 +133,8 @@ export default function RootLayout({children}) {
               </div>
               <motion.div
                 className="h-1/2 basis-1/2 shrink-0 grow-0 p-6 pl-12 pb-0 pr-2/7"
-                variants={heroImage}
+                variants={fadeInItem}
+                custom={8}
               >
                 <Image
                   className="h-full w-full object-cover rounded-md"
@@ -126,13 +143,21 @@ export default function RootLayout({children}) {
               </motion.div>
               <div className="sticky top-blurb flex flex-row justify-between">
                 <div className="w-5/7 flex flex-row justify-between p-6 pl-12 pb-0 pr-0">
-                  <motion.div variants={item}>
-                    <a href="mailto:me@mngyuan.com" target="_blank">
+                  <motion.div variants={fadeInItem} custom={2}>
+                    <a
+                      href="mailto:me@mngyuan.com"
+                      target="_blank"
+                      className="underline"
+                    >
                       me@mngyuan.com
                     </a>
                   </motion.div>
-                  <motion.div variants={item}>
-                    <a href="https://instagram.com/mngyuan" target="_blank">
+                  <motion.div variants={fadeInItem} custom={3}>
+                    <a
+                      href="https://instagram.com/mngyuan"
+                      target="_blank"
+                      className="underline"
+                    >
                       @mngyuan
                     </a>
                   </motion.div>
@@ -142,15 +167,15 @@ export default function RootLayout({children}) {
                 <div className="h-full w-5/7"></div>
                 <motion.div
                   className="w-2/7 -mt-12 pt-6 pl-6 pr-12 sticky top-blurb"
-                  variants={item}
+                  variants={fadeInItem}
+                  custom={7}
                 >
-                  I’m a Creative Technologist, working with web. Previously at
-                  the Royal College of Art, Facebook, and IBM.
+                  {paths[pathname].description}
                 </motion.div>
               </div>
               {children}
             </main>
-            <Nav links={Object.values(paths)} />
+            <Nav links={Object.values(paths).filter((path) => !path.hidden)} />
           </motion.div>
         </AnimatePresence>
       </body>
