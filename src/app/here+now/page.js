@@ -3,14 +3,12 @@
 import Image from 'next/image';
 import {motion} from 'framer-motion';
 
-import jupiterPic from '../../../public/jupiter.png';
+import jupiterPic from 'public/jupiter.png';
+import mxclpPic1 from 'public/mxclp-screencap.jpg';
+import mxclpPic2 from 'public/mxclp-screencap2.jpg';
+import mxclpPic3 from 'public/mxclp-screencap3.jpg';
 
 import {fadeInItem} from '../layout';
-
-const pageContent = {
-  visible: {opacity: 1, transition: {duration: 0.8}},
-  hidden: {opacity: 0},
-};
 
 export default function Home() {
   return (
@@ -19,15 +17,17 @@ export default function Home() {
         <motion.div
           className="h-full w-5/7 p-6 pl-12 pr-0 pb-0"
           variants={fadeInItem}
+          custom={[9]}
         >
           <Image
             className="h-full w-full object-cover rounded-md"
-            src={jupiterPic}
+            src={mxclpPic1}
           />
         </motion.div>
         <motion.div
           className="w-2/7 pt-6 pl-6 pr-12 sticky top-blurb"
           variants={fadeInItem}
+          custom={[10]}
         >
           Video editing today lives almost entirely digitally, behind thumb taps
           or mouse clicks and keyboard shortcuts. What if the work of editing
@@ -39,7 +39,7 @@ export default function Home() {
         <div className="h-full w-5/7 p-6 pl-12 pr-0 pb-0">
           <Image
             className="h-full w-full object-cover rounded-md"
-            src={jupiterPic}
+            src={mxclpPic2}
           />
         </div>
         <div className="w-2/7 pt-6 pl-6 pr-12 sticky top-blurb">
@@ -51,7 +51,7 @@ export default function Home() {
         <div className="h-full w-5/7 p-6 pl-12 pr-0 pb-0">
           <Image
             className="h-full w-full object-cover rounded-md"
-            src={jupiterPic}
+            src={mxclpPic3}
           />
         </div>
         <div className="w-2/7 pt-6 pl-6 pr-12 sticky top-blurb">
