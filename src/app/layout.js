@@ -7,7 +7,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {usePathname} from 'next/navigation';
 
-import jupiterPic from '../../public/jupiter.png';
+import jupiterPic from 'public/jupiter.png';
+import {Video} from '@/components/Video';
 
 const inter = Inter({subsets: ['latin']});
 
@@ -16,18 +17,30 @@ const inter = Inter({subsets: ['latin']});
 //description: 'Creative technologist. Ex-Facebook, IBM, RCA.',
 //};
 //
-const paths = {
+export const paths = {
   '/': {
     href: '/',
     description:
       'I’m a Creative Technologist, working with web. Previously at the Royal College of Art, Facebook, and IBM.',
     hidden: true,
+    hero: (
+      <Image
+        className="h-full w-full object-cover rounded-md"
+        src={jupiterPic}
+      />
+    ),
   },
   '/mx-clp': {
     href: '/mx-clp',
     name: 'MX-CLP',
     description:
       'A portable, tactile video editing device using embodied cognition and physical metaphor to spark new creativity.',
+    hero: (
+      <Video
+        className="h-full w-full object-cover rounded-md"
+        src="/mxclppromo.mp4"
+      />
+    ),
   },
   '/this-statement-is-false': {
     href: '/this-statement-is-false',
@@ -38,19 +51,36 @@ const paths = {
   '/summer-love': {
     href: '/summer-love',
     name: 'Summer Love',
+  },
+  '/here+now': {
+    href: '/here+now',
+    name: 'HERE + NOW',
     description:
       'An interactive audio installation meant to encourage stillness, reflection, and curiosity in music.',
   },
-  '/here+now': {href: '/here+now', name: 'HERE + NOW'},
-  '/dreaming': {href: '/dreaming', name: 'DREAMING'},
+  '/dreaming': {
+    href: '/dreaming',
+    name: 'DREAMING',
+    description:
+      '夢 DREAMING is a photobook containing photo essays and 35mm film photographs taken over 8 weeks traveling Asia alone, reflecting on the incredibly personal mental space a language and culture barrier creates. ',
+  },
 };
 
+// AnimatePresence only supports one child in mode="wait", which we need in
+// order to run exit animations before the next entry animations. The one
+// child is a motion.div, which will wait for all children motion.div's exit
+// animations to run before exiting itself with when: 'afterChildren'.
 const animatecontainer = {
   visible: {
     opacity: 1,
   },
   hidden: {
-    opacity: 0,
+    // 'hidden' is here just to wait, don't actually want to fade out container
+    opacity: 1,
+    transition: {
+      when: 'afterChildren',
+      duration: 0.01,
+    },
   },
 };
 
@@ -60,15 +90,11 @@ export const fadeInItem = {
     y: 0,
     transition: {delay: 0.24 * i, duration: 0.8},
   }),
-  hidden: {opacity: 0, y: 4},
-};
-
-const heroImage = {
-  visible: {
-    opacity: 1,
-    transition: {delay: 1, duration: 0.8},
-  },
-  hidden: {opacity: 0},
+  hidden: ([i, shouldntTransition]) => ({
+    opacity: shouldntTransition ? 1 : 0,
+    y: shouldntTransition ? 0 : 4,
+    transition: {delay: 0.12 * (10 - i), duration: 0.8},
+  }),
 };
 
 const Nav = ({links}) => {
@@ -78,12 +104,12 @@ const Nav = ({links}) => {
       <motion.div
         className="flex flex-row justify-between p-6 pt-12 pr-12 pb-0"
         variants={fadeInItem}
-        custom={4}
+        custom={[4]}
       >
         <Link href="/">Home</Link>
       </motion.div>
       <nav className="basis-1/2 shrink-0 grow-0 flex flex-col justify-between p-6 pr-12 pb-0">
-        <motion.ul variants={fadeInItem} custom={5}>
+        <motion.ul variants={fadeInItem} custom={[5]}>
           {links.map((link) => (
             <li key={link.name}>
               <Link
@@ -97,7 +123,7 @@ const Nav = ({links}) => {
             </li>
           ))}
         </motion.ul>
-        <motion.div variants={fadeInItem} custom={6}>
+        <motion.div variants={fadeInItem} custom={[6]}>
           <i>About</i>
         </motion.div>
       </nav>
@@ -108,24 +134,26 @@ const Nav = ({links}) => {
 
 export default function RootLayout({children}) {
   const pathname = usePathname();
+  console.log(jupiterPic);
   return (
     <html lang="en">
       <body className={`${inter.className} text-white bg-black`}>
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           <motion.div
             initial="hidden"
             animate="visible"
             exit="hidden"
             variants={animatecontainer}
             className="h-full"
+            key={pathname}
           >
             <main className="h-full overflow-auto flex flex-col justify-between">
               <div className="flex flex-row justify-between sticky top-0 p-6 pt-12 pl-12 pb-0 pr-2/7">
-                <motion.div variants={fadeInItem} custom={0}>
+                <motion.div variants={fadeInItem} custom={[0]} key="name">
                   <Link href="/">Kevin Lee</Link>
                   {pathname !== '/' ? ` / ${paths[pathname].name}` : ''}
                 </motion.div>
-                <motion.div variants={fadeInItem} custom={1}>
+                <motion.div variants={fadeInItem} custom={[1]} key="resume">
                   <a href="/Kevin Lee CV - Summer 2023.pdf" target="_blank">
                     Resume / CV
                   </a>
@@ -134,16 +162,18 @@ export default function RootLayout({children}) {
               <motion.div
                 className="h-1/2 basis-1/2 shrink-0 grow-0 p-6 pl-12 pb-0 pr-2/7"
                 variants={fadeInItem}
-                custom={8}
+                custom={[8]}
               >
-                <Image
-                  className="h-full w-full object-cover rounded-md"
-                  src={jupiterPic}
-                />
+                {paths[pathname]?.hero || (
+                  <Image
+                    className="h-full w-full object-cover rounded-md"
+                    src={jupiterPic}
+                  />
+                )}
               </motion.div>
               <div className="sticky top-blurb flex flex-row justify-between">
                 <div className="w-5/7 flex flex-row justify-between p-6 pl-12 pb-0 pr-0">
-                  <motion.div variants={fadeInItem} custom={2}>
+                  <motion.div variants={fadeInItem} custom={[2]} key="email">
                     <a
                       href="mailto:me@mngyuan.com"
                       target="_blank"
@@ -152,7 +182,7 @@ export default function RootLayout({children}) {
                       me@mngyuan.com
                     </a>
                   </motion.div>
-                  <motion.div variants={fadeInItem} custom={3}>
+                  <motion.div variants={fadeInItem} custom={[3]} key="ig">
                     <a
                       href="https://instagram.com/mngyuan"
                       target="_blank"
@@ -168,7 +198,8 @@ export default function RootLayout({children}) {
                 <motion.div
                   className="w-2/7 -mt-12 pt-6 pl-6 pr-12 sticky top-blurb"
                   variants={fadeInItem}
-                  custom={7}
+                  custom={[7]}
+                  key="description"
                 >
                   {paths[pathname].description}
                 </motion.div>
