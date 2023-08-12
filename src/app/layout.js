@@ -134,7 +134,6 @@ const Nav = ({links}) => {
 
 export default function RootLayout({children}) {
   const pathname = usePathname();
-  console.log(jupiterPic);
   return (
     <html lang="en">
       <body className={`${inter.className} text-white bg-black`}>
