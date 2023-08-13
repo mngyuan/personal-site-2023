@@ -27,6 +27,7 @@ export const paths = {
       <Image
         className="h-full w-full object-cover rounded-md"
         src={jupiterPic}
+        alt="A pixelated image of a stylized Jupiter, in red against a blue sky"
       />
     ),
   },
@@ -167,6 +168,7 @@ export default function RootLayout({children}) {
                   <Image
                     className="h-full w-full object-cover rounded-md"
                     src={jupiterPic}
+                    alt="A pixelated image of a stylized Jupiter, in red against a blue sky"
                   />
                 )}
               </motion.div>

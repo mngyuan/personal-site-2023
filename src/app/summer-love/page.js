@@ -22,6 +22,7 @@ export default function Home() {
           <Image
             className="h-full w-full object-cover rounded-md"
             src={mxclpPic1}
+            alt="MX-CLP, a new video editing interface"
           />
         </motion.div>
         <motion.div
@@ -40,6 +41,7 @@ export default function Home() {
           <Image
             className="h-full w-full object-cover rounded-md"
             src={mxclpPic2}
+            alt="MX-CLP, a new video editing interface"
           />
         </div>
         <div className="w-2/7 pt-6 pl-6 pr-12 sticky top-blurb">
@@ -52,6 +54,7 @@ export default function Home() {
           <Image
             className="h-full w-full object-cover rounded-md"
             src={mxclpPic3}
+            alt="MX-CLP, a new video editing interface"
           />
         </div>
         <div className="w-2/7 pt-6 pl-6 pr-12 sticky top-blurb">
@@ -67,6 +70,7 @@ export default function Home() {
           <Image
             className="h-full w-full object-cover rounded-md"
             src={jupiterPic}
+            alt="A pixelated image of a stylized Jupiter, in red against a blue sky"
           />
         </div>
         <div className="w-2/7 pt-6 pl-6 pr-12 sticky top-blurb">
