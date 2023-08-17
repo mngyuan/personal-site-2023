@@ -1,1 +1,2 @@
-export const Video = (props) => <video {...props} />;
+const Video = (props) => <video {...props} />;
+export default Video;

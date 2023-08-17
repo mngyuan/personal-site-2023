@@ -1,18 +1,17 @@
-'use client';
-
 import Image from 'next/image';
 import {motion} from 'framer-motion';
+
+import {fadeInItem} from '@/components/Layout';
+import Layout from '@/components/Layout';
 
 import jupiterPic from 'public/jupiter.png';
 import mxclpPic1 from 'public/mxclp-screencap.jpg';
 import mxclpPic2 from 'public/mxclp-screencap2.jpg';
 import mxclpPic3 from 'public/mxclp-screencap3.jpg';
 
-import {fadeInItem} from '../layout';
-
-export default function Home() {
+const MXCLP = () => {
   return (
-    <>
+    <Layout>
       <div className="h-1/2 basis-1/2 shrink-0 grow-0 flex flex-row justify-between items-start">
         <motion.div
           className="h-full w-5/7 p-6 pl-12 pr-0 pb-0"
@@ -81,6 +80,7 @@ export default function Home() {
           inspires creatives to find new stories to tell.
         </div>
       </div>
-    </>
+    </Layout>
   );
-}
+};
+export default MXCLP;
