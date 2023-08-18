@@ -1,11 +1,15 @@
-import Image from 'next/image';
+import PageTransition from '@/components/PageTransition';
+import SharedLayout from '@/components/SharedLayout';
+import {forwardRef} from 'react';
 
-import jupiterPic from '../../public/jupiter.png';
-
-export default function Home() {
+const Home = (props, ref) => {
   return (
-    <>
-      <div className="h-full"></div>
-    </>
+    <PageTransition ref={ref} className="h-full w-full">
+      <SharedLayout>
+        <div className="h-full"></div>
+      </SharedLayout>
+    </PageTransition>
   );
-}
+};
+
+export default forwardRef(Home);
