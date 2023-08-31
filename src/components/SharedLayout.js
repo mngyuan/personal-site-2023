@@ -1,9 +1,8 @@
-'use client';
-
 import {motion} from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import {usePathname} from 'next/navigation';
+import {useState} from 'react';
 
 import jupiterPic from 'public/jupiter.png';
 import {Video} from '@/components/Video';
@@ -58,24 +57,6 @@ export const paths = {
   },
 };
 
-// AnimatePresence only supports one child in mode="wait", which we need in
-// order to run exit animations before the next entry animations. The one
-// child is a motion.div, which will wait for all children motion.div's exit
-// animations to run before exiting itself with when: 'afterChildren'.
-const animatecontainer = {
-  visible: {
-    opacity: 1,
-  },
-  hidden: {
-    // 'hidden' is here just to wait, don't actually want to fade out container
-    opacity: 1,
-    transition: {
-      when: 'afterChildren',
-      duration: 0.01,
-    },
-  },
-};
-
 export const fadeInItem = {
   visible: (i) => ({
     opacity: 1,
@@ -90,7 +71,10 @@ export const fadeInItem = {
 };
 
 const Nav = ({links}) => {
-  const pathname = usePathname();
+  // Cache pathname to prevent flicker during exit animations
+  const pathnameDynamic = usePathname();
+  const [pathname, setPathName] = useState(pathnameDynamic);
+
   return (
     <div className="h-full w-2/7 top-0 left-5/7 absolute flex flex-col justify-between bg-gradient-to-b from-black from-25% to-60%">
       <motion.div
@@ -124,8 +108,34 @@ const Nav = ({links}) => {
   );
 };
 
+const Header = () => (
+  <header>
+    <div className="logo">
+      <Link href="/about">about</Link>
+    </div>
+    <div className="header-items">
+      <div className="header-item">
+        <Link href="/">Home</Link>
+      </div>
+      <div className="header-item">
+        <Link href="/mx-clp">MX-CLP</Link>
+      </div>
+      <div className="header-item">
+        <Link href="/contact">Contact</Link>
+      </div>
+    </div>
+  </header>
+);
+
 const SharedLayout = ({children}) => {
-  const pathname = usePathname();
+  // Cache pathname to prevent re-renders when usePathname reports a
+  // route change. this prevents flicker when Nav or SharedLayout
+  // content updates when the router changes before the exit animation
+  // has finished. we only ever want to be fully re-rendered by our
+  // parent component
+  const pathnameDynamic = usePathname();
+  const [pathname, setPathName] = useState(pathnameDynamic);
+
   return (
     <>
       <main className="h-full overflow-auto flex flex-col justify-between">
@@ -192,4 +202,5 @@ const SharedLayout = ({children}) => {
     </>
   );
 };
+
 export default SharedLayout;
