@@ -15,6 +15,7 @@ module.exports = {
         '5/7': 'calc(100% / 7 * 5)',
         '2/7': 'calc(100% / 7 * 2)',
         blurb: 'calc(50% + 4.5rem)',
+        22: '5.5rem',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

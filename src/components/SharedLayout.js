@@ -5,6 +5,7 @@ import {usePathname} from 'next/navigation';
 import {useState} from 'react';
 
 import jupiterPic from 'public/jupiter.png';
+import thisStatementPic from 'public/this-statement-is-false-rca-1.png';
 import {Video} from '@/components/Video';
 
 export const paths = {
@@ -38,6 +39,13 @@ export const paths = {
     name: 'THIS STATEMENT IS FALSE',
     description:
       'An interactive AI art installation asking users to interrogate their relationship with non-human intelligence, present and future.',
+    hero: (
+      <Image
+        className="h-full w-full object-cover rounded-md"
+        src={thisStatementPic}
+        alt="A pixelated image of a stylized Jupiter, in red against a blue sky"
+      />
+    ),
   },
   '/summer-love': {
     href: '/summer-love',
@@ -68,6 +76,35 @@ export const fadeInItem = {
     y: shouldntTransition ? 0 : 4,
     transition: {delay: 0.12 * (10 - i), duration: 0.8},
   }),
+};
+
+export const Row = ({left, final, children}) => {
+  const finalRowClassname = 'h-full basis-full';
+  const rowClassname = 'h-1/2 basis-1/2';
+  return (
+    <motion.div
+      className={`${
+        final ? finalRowClassname : rowClassname
+      } shrink-0 grow-0 flex flex-row justify-between items-start`}
+      variants={fadeInItem}
+      custom={[9]}
+    >
+      <motion.div
+        className="h-full w-5/7 p-6 pl-12 pr-0 pb-0"
+        variants={fadeInItem}
+        custom={[9]}
+      >
+        {left}
+      </motion.div>
+      <motion.div
+        className="w-2/7 pt-6 pl-6 pr-12 sticky top-blurb"
+        variants={fadeInItem}
+        custom={[10]}
+      >
+        {children}
+      </motion.div>
+    </motion.div>
+  );
 };
 
 const Nav = ({links}) => {
@@ -107,25 +144,6 @@ const Nav = ({links}) => {
     </div>
   );
 };
-
-const Header = () => (
-  <header>
-    <div className="logo">
-      <Link href="/about">about</Link>
-    </div>
-    <div className="header-items">
-      <div className="header-item">
-        <Link href="/">Home</Link>
-      </div>
-      <div className="header-item">
-        <Link href="/mx-clp">MX-CLP</Link>
-      </div>
-      <div className="header-item">
-        <Link href="/contact">Contact</Link>
-      </div>
-    </div>
-  </header>
-);
 
 const SharedLayout = ({children}) => {
   // Cache pathname to prevent re-renders when usePathname reports a
