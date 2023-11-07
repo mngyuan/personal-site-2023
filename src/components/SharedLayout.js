@@ -2,7 +2,7 @@ import {motion} from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import {usePathname} from 'next/navigation';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 
 import jupiterPic from 'public/jupiter.png';
 import thisStatementPic from 'public/this-statement-is-false-rca-1.png';
@@ -12,14 +12,23 @@ export const paths = {
   '/': {
     href: '/',
     description:
-      'I’m a Creative Technologist, working with web. Previously at the Royal College of Art, Facebook, and IBM.',
+      "I’m a creative technologist, previously at Facebook. I've had my work exhibited in New York, Tokyo, and Dubai, and currently I lecture at the Creative Computing Institute at UAL and teach at the Royal College of Art.",
     hidden: true,
     hero: (
-      <Image
+      <Video
         className="h-full w-full object-cover rounded-md"
-        src={jupiterPic}
-        alt="A pixelated image of a stylized Jupiter, in red against a blue sky"
-      />
+        autoPlay
+        muted
+        loop
+        alt="Pixelated video of some outdoor location"
+      >
+        <source
+          src="/THINGS I SAID ID DO clip-av1.mp4"
+          type="video/webm; codecs=av01.0.05M.08"
+        />
+        <source src="/THINGS I SAID ID DO clip-h265.mp4" type="video/mp4" />
+        <source src="/THINGS I SAID ID DO clip-h264.mp4" type="video/mp4" />
+      </Video>
     ),
   },
   '/mx-clp': {
@@ -50,6 +59,8 @@ export const paths = {
   '/summer-love': {
     href: '/summer-love',
     name: 'Summer Love',
+    description:
+      '60 minutes, video for projection. Prepared to and exhibited with live music at Land to Sea in Brooklyn.',
   },
   '/here+now': {
     href: '/here+now',
@@ -97,7 +108,7 @@ export const Row = ({left, final, children}) => {
         {left}
       </motion.div>
       <motion.div
-        className="w-2/7 pt-6 pl-6 pr-12 sticky top-blurb"
+        className="w-2/7 pt-6 pl-8 pr-12 sticky top-blurb"
         variants={fadeInItem}
         custom={[10]}
       >
@@ -153,10 +164,24 @@ const SharedLayout = ({children}) => {
   // parent component
   const pathnameDynamic = usePathname();
   const [pathname, setPathName] = useState(pathnameDynamic);
+  const [safariFixScrollbarGutter, setSafariFixScrollbarGutter] =
+    useState(false);
+
+  useEffect(() => {
+    if (
+      typeof navigator != 'undefined' &&
+      navigator?.userAgent?.includes('Safari')
+    ) {
+      setSafariFixScrollbarGutter(true);
+    }
+  }, []);
 
   return (
     <>
-      <main className="h-full overflow-auto flex flex-col justify-between">
+      <main
+        className="h-full overflow-auto flex flex-col justify-between"
+        style={{scrollbarGutter: 'stable'}}
+      >
         <div className="flex flex-row justify-between sticky top-0 p-6 pt-12 pl-12 pb-0 pr-2/7">
           <motion.div variants={fadeInItem} custom={[0]} key="name">
             <Link href="/">Kevin Lee</Link>
@@ -206,7 +231,9 @@ const SharedLayout = ({children}) => {
         <div className="h-1/4 basis-1/4 shrink-0 grow-0 flex flex-row justify-between items-start">
           <div className="h-full w-5/7"></div>
           <motion.div
-            className="w-2/7 -mt-12 pt-6 pl-6 pr-12 sticky top-blurb"
+            className={`w-2/7 -mt-12 pt-6 ${
+              safariFixScrollbarGutter ? 'pl-6' : 'pl-8'
+            } pr-12 sticky top-blurb`}
             variants={fadeInItem}
             custom={[7]}
             key="description"
