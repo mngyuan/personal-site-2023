@@ -1,6 +1,7 @@
 {
   "name": "jupiter",
-  "version": "0.1.0",
+  "author": "Kevin Lee <me@mngyuan.com>",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
