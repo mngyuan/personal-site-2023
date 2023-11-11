@@ -6,7 +6,6 @@ before_script:
 pages:
   script:
     - npm run build
-    - npm run export
     - mv public _public
     - mv out public
   artifacts:
