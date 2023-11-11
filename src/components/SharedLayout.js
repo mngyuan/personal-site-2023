@@ -108,7 +108,7 @@ export const Row = ({left, final, children}) => {
         {left}
       </motion.div>
       <motion.div
-        className="w-2/7 pt-6 pl-8 pr-12 sticky top-blurb"
+        className="w-2/7 pt-6 pl-6 pr-12 sticky top-blurb"
         variants={fadeInItem}
         custom={[10]}
       >
@@ -178,10 +178,7 @@ const SharedLayout = ({children}) => {
 
   return (
     <>
-      <main
-        className="h-full overflow-auto flex flex-col justify-between"
-        style={{scrollbarGutter: 'stable'}}
-      >
+      <main className="h-full overflow-auto flex flex-col justify-between">
         <div className="flex flex-row justify-between sticky top-0 p-6 pt-12 pl-12 pb-0 pr-2/7">
           <motion.div variants={fadeInItem} custom={[0]} key="name">
             <Link href="/">Kevin Lee</Link>
@@ -231,9 +228,7 @@ const SharedLayout = ({children}) => {
         <div className="h-1/4 basis-1/4 shrink-0 grow-0 flex flex-row justify-between items-start">
           <div className="h-full w-5/7"></div>
           <motion.div
-            className={`w-2/7 -mt-12 pt-6 ${
-              safariFixScrollbarGutter ? 'pl-6' : 'pl-8'
-            } pr-12 sticky top-blurb`}
+            className={`w-2/7 -mt-12 pt-6 pl-6 pr-12 sticky top-blurb`}
             variants={fadeInItem}
             custom={[7]}
             key="description"
