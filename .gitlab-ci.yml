@@ -1,0 +1,22 @@
+image: node:14
+
+# Cache node modules - speeds up future builds
+cache:
+  paths:
+  - node_modules
+
+pages:
+  stage: deploy
+  script:
+    - npm install
+    - npm run build
+    - npm run export
+    - mv public _public # nextjs uses the public folder
+    - mv out public
+  artifacts:
+    paths:
+    - public
+  only:
+    - main
+
+
