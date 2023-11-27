@@ -52,7 +52,7 @@ const HereNow = () => {
       <Row
         left={
           <Image
-            className="h-1/2 w-full object-cover rounded-md sticky top-22 -z-10"
+            className="lg:h-1/2 w-full object-cover rounded-md sticky top-22 -z-10"
             src={jupiterPic}
             alt="A pixelated image of a stylized Jupiter, in red against a blue sky"
           />

@@ -90,25 +90,25 @@ export const fadeInItem = {
 };
 
 export const Row = ({left, final, children}) => {
-  const finalRowClassname = 'h-full basis-full';
-  const rowClassname = 'h-1/2 basis-1/2';
+  const finalRowClassname = 'lg:h-full lg:basis-full';
+  const rowClassname = 'lg:h-1/2 lg:basis-1/2';
   return (
     <motion.div
       className={`${
         final ? finalRowClassname : rowClassname
-      } shrink-0 grow-0 flex flex-row justify-between items-start`}
+      } shrink-0 grow-0 flex flex-col lg:flex-row justify-between items-start`}
       variants={fadeInItem}
       custom={[9]}
     >
       <motion.div
-        className="h-full w-5/7 p-6 pl-12 pr-0 pb-0"
+        className="h-full w-full lg:w-5/7 p-6 lg:pl-12 lg:pr-0 pb-0"
         variants={fadeInItem}
         custom={[9]}
       >
         {left}
       </motion.div>
       <motion.div
-        className="w-2/7 pt-6 pl-6 pr-12 sticky top-blurb"
+        className="lg:w-2/7 pt-6 pl-6 pr-6 lg:pr-12 lg:sticky lg:top-blurb"
         variants={fadeInItem}
         custom={[10]}
       >
@@ -122,24 +122,35 @@ const Nav = ({links}) => {
   // Cache pathname to prevent flicker during exit animations
   const pathnameDynamic = usePathname();
   const [pathname, setPathName] = useState(pathnameDynamic);
+  const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="h-full w-2/7 top-0 left-5/7 absolute flex flex-col justify-between bg-gradient-to-b from-black from-25% to-60%">
+    <div className="w-full h-auto lg:h-full lg:w-2/7 lg:top-0 lg:left-5/7 lg:absolute flex flex-col justify-between bg-gradient-to-b from-black from-25% to-60% select-none">
       <motion.div
-        className="flex flex-row justify-between p-6 pt-12 pr-12 pb-0"
+        className="flex flex-row justify-between p-6 lg:pt-12 lg:pr-12 pb-0"
         variants={fadeInItem}
         custom={[4]}
       >
         <Link href="/">Home</Link>
+        <a
+          className="grow text-right font-bold lg:hidden"
+          onPointerDown={() => setExpanded(!expanded)}
+        >
+          {expanded ? '-' : '+'}
+        </a>
       </motion.div>
-      <nav className="basis-1/2 shrink-0 grow-0 flex flex-col justify-between p-6 pr-12 pb-0">
+      <nav
+        className={`basis-1/2 shrink-0 grow-0 flex flex-col justify-between lg:p-6 lg:pr-12 lg:pb-0 ${
+          expanded ? 'p-6 pb-0' : ''
+        }`}
+      >
         <motion.ul variants={fadeInItem} custom={[5]}>
           {links.map((link) => (
             <li key={link.name}>
               <Link
                 className={`hover:opacity-100 transition-opacity ${
                   link.href === pathname ? 'opacity-100' : 'opacity-50'
-                }`}
+                } ${expanded ? 'visible' : 'hidden lg:block'}`}
                 href={link.href}
               >
                 {link.name} +
@@ -147,7 +158,11 @@ const Nav = ({links}) => {
             </li>
           ))}
         </motion.ul>
-        <motion.div variants={fadeInItem} custom={[6]}>
+        <motion.div
+          variants={fadeInItem}
+          custom={[6]}
+          className="hidden lg:block"
+        >
           <i>About</i>
         </motion.div>
       </nav>
@@ -177,9 +192,10 @@ const SharedLayout = ({children}) => {
   }, []);
 
   return (
-    <>
+    <div className="flex flex-col justify-between h-full overflow-auto">
+      <Nav links={Object.values(paths).filter((path) => !path.hidden)} />
       <main className="h-full overflow-auto flex flex-col justify-between">
-        <div className="flex flex-row justify-between sticky top-0 p-6 pt-12 pl-12 pb-0 pr-2/7">
+        <div className="flex flex-row justify-between sticky top-0 p-6 lg:pt-12 lg:pl-12 pb-0 lg:pr-2/7">
           <motion.div variants={fadeInItem} custom={[0]} key="name">
             <Link href="/">Kevin Lee</Link>
             {pathname !== '/' ? ` / ${paths[pathname].name}` : ''}
@@ -191,7 +207,7 @@ const SharedLayout = ({children}) => {
           </motion.div>
         </div>
         <motion.div
-          className="h-1/2 basis-1/2 shrink-0 grow-0 p-6 pl-12 pb-0 pr-2/7"
+          className="h-1/2 basis-1/2 shrink-0 grow-0 p-6 lg:pl-12 pb-0 lg:pr-2/7"
           variants={fadeInItem}
           custom={[8]}
         >
@@ -203,8 +219,8 @@ const SharedLayout = ({children}) => {
             />
           )}
         </motion.div>
-        <div className="sticky top-blurb flex flex-row justify-between">
-          <div className="w-5/7 flex flex-row justify-between p-6 pl-12 pb-0 pr-0">
+        <div className="lg:sticky lg:top-blurb flex flex-row justify-between">
+          <div className="w-full lg:w-5/7 flex flex-row justify-between p-6 lg:pl-12 pb-0 lg:pr-0">
             <motion.div variants={fadeInItem} custom={[2]} key="email">
               <a
                 href="mailto:me@mngyuan.com"
@@ -226,9 +242,9 @@ const SharedLayout = ({children}) => {
           </div>
         </div>
         <div className="h-1/4 basis-1/4 shrink-0 grow-0 flex flex-row justify-between items-start">
-          <div className="h-full w-5/7"></div>
+          <div className="h-full lg:w-5/7"></div>
           <motion.div
-            className={`w-2/7 -mt-12 pt-6 pl-6 pr-12 sticky top-blurb`}
+            className={`w-full lg:w-2/7 lg:-mt-12 pt-6 pl-6 lg:pl-6 pr-6 lg:pr-12 sticky lg:top-blurb`}
             variants={fadeInItem}
             custom={[7]}
             key="description"
@@ -238,8 +254,7 @@ const SharedLayout = ({children}) => {
         </div>
         {children}
       </main>
-      <Nav links={Object.values(paths).filter((path) => !path.hidden)} />
-    </>
+    </div>
   );
 };
 
