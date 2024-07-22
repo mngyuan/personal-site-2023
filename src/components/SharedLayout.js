@@ -151,7 +151,7 @@ const Nav = ({links}) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="w-full h-auto lg:h-full lg:w-2/7 lg:top-0 lg:left-5/7 lg:absolute flex flex-col justify-between bg-gradient-to-b from-black from-25% to-60% select-none">
+    <div className="w-full h-auto lg:h-full lg:w-2/7 lg:top-0 lg:left-5/7 lg:absolute flex flex-col justify-between bg-gradient-to-b from-black from-25% to-60% select-none z-10">
       <motion.div
         className="flex flex-row justify-between p-6 lg:pt-12 lg:pr-12 pb-0"
         variants={fadeInItem}
