@@ -228,7 +228,7 @@ const SharedLayout = ({children}) => {
             {pathname !== '/' ? ` / ${paths[pathname].name}` : ''}
           </motion.div>
           <motion.div variants={fadeInItem} custom={[1]} key="resume">
-            <a href="/Kevin Lee CV - Summer 2023.pdf" target="_blank">
+            <a href="/Kevin Lee CV - Summer 2024.pdf" target="_blank">
               Resume / CV
             </a>
           </motion.div>
