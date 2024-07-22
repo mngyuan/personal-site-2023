@@ -2,10 +2,10 @@ import Image from 'next/image';
 import {motion} from 'framer-motion';
 import SharedLayout, {Row, fadeInItem} from '@/components/SharedLayout';
 
-import jupiterPic from 'public/jupiter.png';
-import mxclpPic1 from 'public/mxclp-screencap.jpg';
-import mxclpPic2 from 'public/mxclp-screencap2.jpg';
-import mxclpPic3 from 'public/mxclp-screencap3.jpg';
+import herenowPic1 from 'public/screencap0clean.jpg';
+import herenowPic2 from 'public/Every Day I Wake Up Inside Gizmo-52.jpg';
+import herenowPic3 from 'public/Every Day I Wake Up Inside Gizmo-54.jpg';
+import herenowPic4 from 'public/screencap1.jpg';
 
 const HereNow = () => {
   return (
@@ -14,7 +14,7 @@ const HereNow = () => {
         left={
           <Image
             className="h-full w-full object-cover rounded-md"
-            src={mxclpPic1}
+            src={herenowPic1}
             alt="MX-CLP, a new video editing interface"
           />
         }
@@ -29,7 +29,7 @@ const HereNow = () => {
         left={
           <Image
             className="h-full w-full object-cover rounded-md"
-            src={mxclpPic2}
+            src={herenowPic2}
             alt="MX-CLP, a new video editing interface"
           />
         }
@@ -44,7 +44,7 @@ const HereNow = () => {
         left={
           <Image
             className="h-full w-full object-cover rounded-md"
-            src={mxclpPic3}
+            src={herenowPic3}
             alt="MX-CLP, a new video editing interface"
           />
         }
@@ -53,7 +53,7 @@ const HereNow = () => {
         left={
           <Image
             className="lg:h-1/2 w-full object-cover rounded-md sticky top-22 -z-10"
-            src={jupiterPic}
+            src={herenowPic4}
             alt="A pixelated image of a stylized Jupiter, in red against a blue sky"
           />
         }

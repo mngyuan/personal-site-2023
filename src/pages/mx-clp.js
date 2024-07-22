@@ -2,7 +2,7 @@ import Image from 'next/image';
 import {motion} from 'framer-motion';
 import SharedLayout, {Row, fadeInItem} from '@/components/SharedLayout';
 
-import jupiterPic from 'public/jupiter.png';
+import figure from 'public/Device Mockup.png';
 import mxclpPic1 from 'public/mxclp-screencap.jpg';
 import mxclpPic2 from 'public/mxclp-screencap2.jpg';
 import mxclpPic3 from 'public/mxclp-screencap3.jpg';
@@ -55,8 +55,8 @@ const MXCLP = () => {
         left={
           <Image
             className="lg:h-1/2 w-full object-cover rounded-md sticky top-22 -z-10"
-            src={jupiterPic}
-            alt="A pixelated image of a stylized Jupiter, in red against a blue sky"
+            src={figure}
+            alt="A diagram of MX-CLP, a portable video editing device with a circular touch pad and a large screen"
           />
         }
         final

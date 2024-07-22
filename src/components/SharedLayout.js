@@ -39,6 +39,9 @@ export const paths = {
     hero: (
       <Video
         className="h-full w-full object-cover rounded-md"
+        autoPlay
+        muted
+        loop
         src="/mxclppromo.mp4"
       />
     ),
@@ -56,23 +59,46 @@ export const paths = {
       />
     ),
   },
-  '/summer-love': {
-    href: '/summer-love',
-    name: 'Summer Love',
-    description:
-      '60 minutes, video for projection. Prepared to and exhibited with live music at Land to Sea in Brooklyn.',
-  },
+  //'/summer-love': {
+  //href: '/summer-love',
+  //name: 'Summer Love',
+  //description:
+  //'60 minutes, video for projection. Prepared to and exhibited with live music at Land to Sea in Brooklyn.',
+  //},
   '/here+now': {
     href: '/here+now',
     name: 'HERE + NOW',
     description:
       'An interactive audio installation meant to encourage stillness, reflection, and curiosity in music.',
+    hero: (
+      <Video
+        className="h-full w-full object-cover rounded-md"
+        autoPlay
+        muted
+        loop
+        alt="A man is using HERE+NOW, an interactive audio sculpture which resembles a record player. When he squeezes the handle, it slows the record playback down."
+      >
+        <source src="/herenowsnippet-h265.mp4" type="video/mp4" />
+      </Video>
+    ),
   },
   '/dreaming': {
     href: '/dreaming',
     name: 'DREAMING',
     description:
       '夢 DREAMING is a photobook containing photo essays and 35mm film photographs taken over 8 weeks traveling Asia alone, reflecting on the incredibly personal mental space a language and culture barrier creates. ',
+    hero: (
+      <Video
+        className="h-full w-full object-cover rounded-md"
+        autoPlay
+        muted
+        loop
+        controls={false}
+        alt="A white book with a clear plastic cover with the character 夢 cut into it."
+      >
+        <source src="/dreaming-h265.mp4" type="video/mp4" />
+      </Video>
+    ),
   },
 };
 
@@ -80,12 +106,12 @@ export const fadeInItem = {
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: {delay: 0.24 * i, duration: 0.8},
+    transition: {delay: 0.12 * i, duration: 0.8},
   }),
   hidden: ([i, shouldntTransition]) => ({
     opacity: shouldntTransition ? 1 : 0,
     y: shouldntTransition ? 0 : 4,
-    transition: {delay: 0.12 * (10 - i), duration: 0.8},
+    transition: {delay: 0.06 * (10 - i), duration: 0.8},
   }),
 };
 
@@ -179,8 +205,9 @@ const SharedLayout = ({children}) => {
   // parent component
   const pathnameDynamic = usePathname();
   const [pathname, setPathName] = useState(pathnameDynamic);
-  const [safariFixScrollbarGutter, setSafariFixScrollbarGutter] =
-    useState(false);
+  const [safariFixScrollbarGutter, setSafariFixScrollbarGutter] = useState(
+    false,
+  );
 
   useEffect(() => {
     if (
