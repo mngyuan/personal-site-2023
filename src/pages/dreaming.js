@@ -2,11 +2,11 @@ import Image from 'next/image';
 import {motion} from 'framer-motion';
 import SharedLayout, {Row, fadeInItem} from '@/components/SharedLayout';
 
-import dreamingPic1 from 'public/047A2006-expanded.jpg';
-import dreamingPic2 from 'public/047A2008.jpg';
-import dreamingPic3 from 'public/IMG_7871.jpg';
-import dreamingPic4 from 'public/Screen Shot 2022-02-08 at 9.27.13 PM.jpg';
-import dreamingPic5 from 'public/afterword.jpg';
+import dreamingPic1 from 'public/047A2006-expanded.webp';
+import dreamingPic2 from 'public/047A2008.webp';
+import dreamingPic3 from 'public/IMG_7871.webp';
+import dreamingPic4 from 'public/Screen Shot 2022-02-08 at 9.27.13 PM.webp';
+import dreamingPic5 from 'public/afterword.webp';
 
 const Dreaming = () => {
   return (

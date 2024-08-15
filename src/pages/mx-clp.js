@@ -3,9 +3,9 @@ import {motion} from 'framer-motion';
 import SharedLayout, {Row, fadeInItem} from '@/components/SharedLayout';
 
 import figure from 'public/Device Mockup.png';
-import mxclpPic1 from 'public/mxclp-screencap.jpg';
-import mxclpPic2 from 'public/mxclp-screencap2.jpg';
-import mxclpPic3 from 'public/mxclp-screencap3.jpg';
+import mxclpPic1 from 'public/mxclp-screencap.webp';
+import mxclpPic2 from 'public/mxclp-screencap2.webp';
+import mxclpPic3 from 'public/mxclp-screencap3.webp';
 
 const MXCLP = () => {
   return (

@@ -2,10 +2,10 @@ import Image from 'next/image';
 import {motion} from 'framer-motion';
 import SharedLayout, {Row, fadeInItem} from '@/components/SharedLayout';
 
-import herenowPic1 from 'public/screencap0clean.jpg';
-import herenowPic2 from 'public/Every Day I Wake Up Inside Gizmo-52.jpg';
-import herenowPic3 from 'public/Every Day I Wake Up Inside Gizmo-54.jpg';
-import herenowPic4 from 'public/screencap1.jpg';
+import herenowPic1 from 'public/screencap0clean.webp';
+import herenowPic2 from 'public/Every Day I Wake Up Inside Gizmo-52.webp';
+import herenowPic3 from 'public/Every Day I Wake Up Inside Gizmo-54.webp';
+import herenowPic4 from 'public/screencap1.webp';
 
 const HereNow = () => {
   return (

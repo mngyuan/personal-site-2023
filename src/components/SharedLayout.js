@@ -5,7 +5,7 @@ import {usePathname} from 'next/navigation';
 import {useEffect, useState} from 'react';
 
 import jupiterPic from 'public/jupiter.png';
-import thisStatementPic from 'public/this-statement-is-false-rca-1.png';
+import thisStatementPic from 'public/this-statement-is-false-rca-1.webp';
 import {Video} from '@/components/Video';
 
 export const paths = {

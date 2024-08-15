@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import SharedLayout, {Row} from '@/components/SharedLayout';
 
-import gaeaPic0 from 'public/this-statement-is-false-gaea-0.jpg';
-import gaeaPic1 from 'public/this-statement-is-false-gaea-1.jpg';
-import rcaPic0 from 'public/this-statement-is-false-rca-0.png';
-import rcaPic2 from 'public/this-statement-is-false-rca-2.jpg';
+import gaeaPic0 from 'public/this-statement-is-false-gaea-0.webp';
+import gaeaPic1 from 'public/this-statement-is-false-gaea-1.webp';
+import rcaPic0 from 'public/this-statement-is-false-rca-0.webp';
+import rcaPic2 from 'public/this-statement-is-false-rca-2.webp';
 
 const THISSTATEMENTISFALSE = () => {
   return (
