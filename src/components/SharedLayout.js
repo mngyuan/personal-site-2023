@@ -7,6 +7,7 @@ import {useEffect, useState} from 'react';
 import jupiterPic from 'public/jupiter.png';
 import thisStatementPic from 'public/this-statement-is-false-rca-1.webp';
 import {Video} from '@/components/Video';
+import taPic from 'public/ta tokyo subway mock.webp';
 
 export const paths = {
   '/': {
@@ -55,7 +56,7 @@ export const paths = {
       <Image
         className="h-full w-full object-cover rounded-md"
         src={thisStatementPic}
-        alt="A pixelated image of a stylized Jupiter, in red against a blue sky"
+        alt="A person is typing on a keyboard atop an old CRT TV, on which there appear to be questions asked by an AI that the person is answering."
       />
     ),
   },
@@ -98,6 +99,19 @@ export const paths = {
       >
         <source src="/dreaming-h265.mp4" type="video/mp4" />
       </Video>
+    ),
+  },
+  '/ta': {
+    href: '/ta',
+    name: 'TA',
+    description:
+      'TA presents alternative 3rd person personal pronouns for use in Chinese as a provocation and an investigation into the inherently non-binary nature of Chinese.',
+    hero: (
+      <Image
+        className="h-full w-full object-cover rounded-md"
+        src={taPic}
+        alt="A pixelated image of a stylized Jupiter, in red against a blue sky"
+      />
     ),
   },
 };
