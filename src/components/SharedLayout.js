@@ -14,7 +14,7 @@ export const paths = {
   '/': {
     href: '/',
     description:
-      "I’m a creative technologist, previously at Facebook. I've had my work exhibited in New York, Tokyo, and Dubai, and currently I lecture at the Creative Computing Institute at UAL and teach at the Royal College of Art.",
+      "I’m a creative technologist, previously software at Facebook. I've had my work exhibited in New York, Tokyo, and Dubai, and I've taught at the Creative Computing Institute at UAL and at the Royal College of Art.",
     hidden: true,
     hero: (
       <Video
