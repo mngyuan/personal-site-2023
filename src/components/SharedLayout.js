@@ -8,6 +8,7 @@ import jupiterPic from 'public/jupiter.png';
 import thisStatementPic from 'public/this-statement-is-false-rca-1.webp';
 import {Video} from '@/components/Video';
 import taPic from 'public/ta tokyo subway mock.webp';
+import teachingPic from 'public/supperclub.webp';
 
 export const paths = {
   '/': {
@@ -110,7 +111,24 @@ export const paths = {
       <Image
         className="h-full w-full object-cover rounded-md"
         src={taPic}
-        alt="A pixelated image of a stylized Jupiter, in red against a blue sky"
+        alt="A photo of a train station in the Tokyo Metro, showing a 3 board advertisement for a new Chinese character, TA."
+      />
+    ),
+  },
+  divider: {
+    href: '',
+    name: <br />,
+  },
+  '/teaching': {
+    href: '/teaching',
+    name: 'Teaching',
+    description:
+      "An assortment of teaching, speaking engagements, workshops, and more which I've been involved in recently.",
+    hero: (
+      <Image
+        className="h-full w-full object-cover rounded-md"
+        src={teachingPic}
+        alt="Kevin working together with some participants in what seems to be an outdoor supper club picnic workshop."
       />
     ),
   },
@@ -129,12 +147,13 @@ export const fadeInItem = {
   }),
 };
 
-export const Row = ({left, final, children}) => {
+export const Row = ({left, final, tall, children}) => {
+  const tallClassname = 'lg:h-full lg:basis-full';
   const finalRowClassname = 'lg:h-full lg:basis-full';
   const rowClassname = 'lg:h-1/2 lg:basis-1/2';
   return (
     <motion.div
-      className={`${
+      className={`${tall ? tallClassname : ''} ${
         final ? finalRowClassname : rowClassname
       } shrink-0 grow-0 flex flex-col lg:flex-row justify-between items-start`}
       variants={fadeInItem}
@@ -187,14 +206,18 @@ const Nav = ({links}) => {
         <motion.ul variants={fadeInItem} custom={[5]}>
           {links.map((link) => (
             <li key={link.name}>
-              <Link
-                className={`hover:opacity-100 transition-opacity ${
-                  link.href === pathname ? 'opacity-100' : 'opacity-50'
-                } ${expanded ? 'visible' : 'hidden lg:block'}`}
-                href={link.href}
-              >
-                {link.name} +
-              </Link>
+              {link.href ? (
+                <Link
+                  className={`hover:opacity-100 transition-opacity ${
+                    link.href === pathname ? 'opacity-100' : 'opacity-50'
+                  } ${expanded ? 'visible' : 'hidden lg:block'}`}
+                  href={link.href}
+                >
+                  {link.name} +
+                </Link>
+              ) : (
+                <br />
+              )}
             </li>
           ))}
         </motion.ul>
@@ -239,7 +262,7 @@ const SharedLayout = ({children}) => {
         <div className="flex flex-row justify-between sticky top-0 p-6 lg:pt-12 lg:pl-12 pb-0 lg:pr-2/7">
           <motion.div variants={fadeInItem} custom={[0]} key="name">
             <Link href="/">Kevin Lee</Link>
-            {pathname !== '/' ? ` / ${paths[pathname].name}` : ''}
+            {pathname !== '/' ? ` / ${paths[pathname]?.name}` : ''}
           </motion.div>
           <motion.div variants={fadeInItem} custom={[1]} key="resume">
             <a href="/Kevin Lee CV - Summer 2024.pdf" target="_blank">
@@ -290,7 +313,7 @@ const SharedLayout = ({children}) => {
             custom={[7]}
             key="description"
           >
-            {paths[pathname].description}
+            {paths[pathname]?.description}
           </motion.div>
         </div>
         {children}
