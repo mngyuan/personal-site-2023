@@ -242,9 +242,8 @@ const SharedLayout = ({children}) => {
   // parent component
   const pathnameDynamic = usePathname();
   const [pathname, setPathName] = useState(pathnameDynamic);
-  const [safariFixScrollbarGutter, setSafariFixScrollbarGutter] = useState(
-    false,
-  );
+  const [safariFixScrollbarGutter, setSafariFixScrollbarGutter] =
+    useState(false);
 
   useEffect(() => {
     if (
@@ -265,7 +264,7 @@ const SharedLayout = ({children}) => {
             {pathname !== '/' ? ` / ${paths[pathname]?.name}` : ''}
           </motion.div>
           <motion.div variants={fadeInItem} custom={[1]} key="resume">
-            <a href="/Kevin Lee CV - Summer 2024.pdf" target="_blank">
+            <a href="/Kevin Lee resume Spring 2025.pdf" target="_blank">
               Resume / CV
             </a>
           </motion.div>
