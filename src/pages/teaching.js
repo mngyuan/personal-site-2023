@@ -21,9 +21,9 @@ const Teaching = () => {
           />
         }
       >
-        Student work from my class titled "Creative Coding Primer", from an
+        {`Student work from my class titled "Creative Coding Primer", from an
         exercise I designed for introducing javascript with generative drawing
-        in p5.js.
+        in p5.js.`}
       </Row>
       <Row
         left={
@@ -38,10 +38,10 @@ const Teaching = () => {
         Creative Computing Institute.
       </Row>
       <Row>
-        I've really enjoyed teaching creative computing / creative coding and
+        {`I've really enjoyed teaching creative computing / creative coding and
         software to artists because I've found it to be very empowering for
         their work and lives, and surprisingly relevant to contemporary social
-        issues, movements, and culture.
+        issues, movements, and culture.`}
       </Row>
       <Row
         tall
